@@ -12,6 +12,8 @@ import re
 import csv
 
 # CONSTANTS
+
+tf.config.set_visible_devices([], 'GPU')
     # Common simple animal labels — expanded and grouped by type
 ANIMAL_KEYWORDS: dict[str:list[str]] = {
     "dog": ["dog", "canine", "canidae", "bark", "bow-wow"],
