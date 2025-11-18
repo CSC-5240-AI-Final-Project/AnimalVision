@@ -5,32 +5,37 @@ import wikipedia as wp
 
 MODEL = "meta-llama/Llama-3.1-8B-Instruct"
 
-#Model setup
-model = AutoModelForCausalLM.from_pretrained(MODEL, dtype=torch.bfloat16, device_map='cuda')
-tokenizer = AutoTokenizer.from_pretrained(MODEL)
 
-gener = pipeline('text-generation', model=model,tokenizer=tokenizer, return_full_text=False, do_sample=True, temperature=.3, top_p=.9)
+def describe_animal(simple_label: str, prompt: str='prompts/describe_animal.md', model: str="meta-llama/Llama-3.1-8B-Instruct", temp: float =0.3, top: float = 0.9) -> str:
+    
+    '''
+    prompt = Path to prompt file (we use .md)
+    sound = Path to sound file
+    model = path to model 
+    temp = temperature used by model (keep 0-1)
+    top = top_p (keep 0-1)
+    '''
 
-#Prompt setup
-with open('prompts/describe_animal.md') as f:
-    prompt = f.read()
+    #Model setup
+    model = AutoModelForCausalLM.from_pretrained(model, dtype=torch.bfloat16, device_map='cuda')
+    tokenizer = AutoTokenizer.from_pretrained(model)
+    generator = pipeline('text-generation', model=model,tokenizer=tokenizer, return_full_text=False, 
+                         do_sample=True, temperature=temp, top_p=top)
 
-# Analyze sound
-best_label, best_conf, top_labels = classify_sound("data/lion.mp3")
+    #Prompt setup
+    with open(prompt) as f:
+        prompt = f.read()
 
-# Simplify label
-simple_label, confidence = simplify_label(top_labels)
+    #Titling for wikipedia parsing
+    title = simple_label.strip().title()
 
-print(f"{simple_label}: {confidence}")
+    #We do assume an animal has a page associated with its name :3
+    article = wp.page(title, auto_suggest=False, redirect=True) #Getting artile
+    article = article.content #Full article content
 
-title = simple_label.strip().title()
+    #Generate Output
+    prompts = [{'role':'system', 'content':f'{prompt}'}, {"role":'user', 'content':f'Animal: {simple_label} Article: {article}'}]
 
-article = wp.page(title, auto_suggest=False, redirect=True)
-article = article.content
+    output = generator(prompts, truncation=True)
 
-#Generate Output
-prompts = [{'role':'system', 'content':f'{prompt}'}, {"role":'user', 'content':f'Animal: {simple_label} Article: {article}'}]
-
-output = gener(prompts, truncation=True)
-
-print(output[0]['generated_text'])
+    return simple_label, confidence, output[0]['generated_text'] 
