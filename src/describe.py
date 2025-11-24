@@ -18,7 +18,7 @@ def describe_animal(simple_label: str, prompt: str='prompts/describe_animal.md',
 
     #Model setup
     model = AutoModelForCausalLM.from_pretrained(model, dtype=torch.bfloat16, device_map='cuda')
-    tokenizer = AutoTokenizer.from_pretrained(model)
+    tokenizer = AutoTokenizer.from_pretrained(MODEL)
     generator = pipeline('text-generation', model=model,tokenizer=tokenizer, return_full_text=False, 
                          do_sample=True, temperature=temp, top_p=top)
 
@@ -38,4 +38,4 @@ def describe_animal(simple_label: str, prompt: str='prompts/describe_animal.md',
 
     output = generator(prompts, truncation=True)
 
-    return simple_label, confidence, output[0]['generated_text'] 
+    return  output[0]['generated_text'] 
