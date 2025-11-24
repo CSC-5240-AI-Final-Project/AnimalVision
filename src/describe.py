@@ -1,4 +1,4 @@
-from sound_classification import classify_sound, simplify_label
+from src.sound_classification import classify_sound, simplify_label
 from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 import torch
 import wikipedia as wp

@@ -1,4 +1,4 @@
-from sound_classification import classify_sound, simplify_label
+from src.sound_classification import classify_sound, simplify_label
 
 # Analyze your sound
 best_label, best_conf, top_labels = classify_sound("data/lion.mp3")
