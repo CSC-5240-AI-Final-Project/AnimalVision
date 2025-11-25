@@ -2,21 +2,23 @@
 flask==3.1.2
 
 # --- AI / Machine Learning ---
-tensorflow==2.20.0
+tensorflow==2.15.0
 tensorflow-hub==0.16.1
-keras==3.11.3
-scikit-learn==1.7.2
-tensorflow-io==0.37.1
+keras==2.15.0
+torch==2.1.1
+torchvision==0.16.1
+torchaudio==2.1.1
+transformers==4.41.2
 
 # --- Audio Processing ---
-librosa==0.11.0
+librosa==0.10.1
 soundfile==0.13.1
 soxr==1.0.0
 
 # --- Data & Math ---
-numpy==2.3.4
-matplotlib==3.10.7
-scipy==1.16.2
+numpy==1.26.4
+scipy==1.11.4
+matplotlib==3.8.0
 
 # --- Utilities ---
 requests==2.32.5
