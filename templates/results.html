@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AnimalPRF - Results</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="result-card">
+      <h1 class="page-title">
+        Detected Animal: {{ animal }}
+        <span class="confidence">(Confidence: {{ confidence }})</span>
+      </h1>
+
+      <h2>Description</h2>
+      <p class="page-description">{{ description }}</p>
+
+      <h2>Generated Image</h2>
+      <img src="{{ image_url }}" class="result-image" />
+
+      <a class="back-link" href="/">Analyze another sound</a>
+    </div>
+  </body>
+</html>

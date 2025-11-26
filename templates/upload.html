@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AnimalPRF - Upload</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="title-container">
+      <h1 class="page-title">AnimalPRF</h1>
+      <form class="upload-form" id="uploadForm">
+        <div class="file-upload-wrapper">
+          <input type="file" id="fileInput" name="file" required />
+
+          <button type="button" id="customFileButton">Select Audio File</button>
+          <span id="fileNameLabel">No file chosen</span>
+        </div>
+
+        <button type="submit" id="analyzeButton">Analyze</button>
+      </form>
+
+      <br /><br />
+
+      <div id="progressContainer" style="display: none">
+        <h2 id="mainStatus">Analyzing Audio…</h2>
+
+        <div class="progress-block">
+          <div class="bar"><div id="main-bar" class="bar-fill"></div></div>
+        </div>
+
+        <div id="hourglass" class="hourglass-container" style="display: none">
+          <div class="hourglass">
+            <div class="hourglass-stand"></div>
+            <div class="hourglass-sand"></div>
+            <div class="hourglass-stream"></div>
+          </div>
+        </div>
+      </div>
+
+      <script src="/static/progress.js"></script>
+    </div>
+  </body>
+</html>
