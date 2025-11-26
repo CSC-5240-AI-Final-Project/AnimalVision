@@ -1,29 +1,35 @@
 
-# 🐾 AnimalPRF (Animal Pre-Trained Roar Finder)
+# AnimalVision (AI-Powered Animal Sound Visualization System)
 
-AnimalPRF is an AI-powered Flask web application that identifies animal sounds from uploaded audio clips.  
-It uses **YAMNet** (a pretrained TensorFlow model) and a fine-tuned **EfficientNet-B0** CNN to classify sounds from rural animals such as cats, dogs, birds, foxes, wolves, elk, deer, and bears.
-
----
-
-## 🚀 Features
-- Upload or record an animal sound and receive a predicted species.
-- Flask-based web interface for simple use and team collaboration.
-- Modular design for integrating multiple AI models.
-- Uses open datasets (ESC-50, Xeno-Canto) for training and evaluation.
+**AnimalVision** is an AI-powered Flask web application that transforms animal sounds into visual and descriptive representations.  
+It uses pretrained AI models to classify animal sounds, generate brief descriptions, and create representative images — combining audio, language, and vision into a single experience.
 
 ---
 
-## 🧠 Tech Stack
-- **Frontend:** HTML5 + CSS (Flask templates)
-- **Backend:** Flask (Python)
-- **AI Models:** TensorFlow + TensorFlow Hub (YAMNet, EfficientNet-B0)
-- **Libraries:** Librosa, NumPy, Matplotlib
-- **Version Control:** Git & GitHub
+## Features
+- Upload an animal sound file (e.g., `.wav`) and receive:
+  - The predicted animal name  
+  - A short AI-generated description  
+  - An AI-generated image of the animal  
+- Flask-based web interface for easy interaction  
+- Uses multiple **pretrained AI models** (no training required)  
+- Modular design for future expansion or model swaps  
 
 ---
 
-## 🧩 Installation & Setup
+## Tech Stack
+- **Frontend:** HTML5 + CSS (Flask templates)  
+- **Backend:** Flask (Python)  
+- **Sound Classification:** TensorFlow Hub (YAMNet / PANNs / Wav2Vec2)  
+- **Description Generation:** DeepAI Text Generation API  
+- **Image Rendering:** Stable Diffusion / DALL·E / DeepAI Text-to-Image API  
+- **Libraries:** Librosa, NumPy, Matplotlib, TensorFlow  
+- **Version Control:** Git & GitHub  
+
+
+---
+
+## Installation & Setup
 
 ### 1. Clone the Repository
 ```bash

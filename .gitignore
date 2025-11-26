@@ -7,8 +7,9 @@ __pycache__/
 # Virtual environment
 venv/
 
+# not ignoring datasets for now. will change back to ignore later
 # Datasets
-data/
+# data/
 
 # Jupyter notebook checkpoints
 .ipynb_checkpoints/
