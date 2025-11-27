@@ -1,31 +1,56 @@
 
-# AnimalVision (AI-Powered Animal Sound Visualization System)
+# AnimalPRF (Animal Pre-defined Roar Finder - AI-Powered Animal Sound Visualization System)
 
-**AnimalVision** is an AI-powered Flask web application that transforms animal sounds into visual and descriptive representations.  
+**AnimalPRF** is an AI-powered Flask web application that transforms animal sounds into visual and descriptive representations.  
 It uses pretrained AI models to classify animal sounds, generate brief descriptions, and create representative images — combining audio, language, and vision into a single experience.
 
 ---
 
 ## Features
-- Upload an animal sound file (e.g., `.wav`) and receive:
-  - The predicted animal name  
-  - A short AI-generated description  
-  - An AI-generated image of the animal  
-- Flask-based web interface for easy interaction  
-- Uses multiple **pretrained AI models** (no training required)  
-- Modular design for future expansion or model swaps  
+- Upload an audio file (e.g., `.wav`, `.mp3`)
+- The system automatically:
+  - **Classifies the animal sound** using a YAMNet + AST ensemble
+  - **Generates a short factual description** using a local TinyLlama LLM
+  - **Creates a photorealistic AI image** using Stable Diffusion XL Turbo
+- Real-time progress UI:
+  - Dynamic progress bar
+  - Hourglass loading animation
+  - Status messages for each pipeline stage
+- Automatic cleanup of temporary audio/image files
+- Fully local models (no external API calls)
 
 ---
 
 ## Tech Stack
-- **Frontend:** HTML5 + CSS (Flask templates)  
-- **Backend:** Flask (Python)  
-- **Sound Classification:** TensorFlow Hub (YAMNet / PANNs / Wav2Vec2)  
-- **Description Generation:** DeepAI Text Generation API  
-- **Image Rendering:** Stable Diffusion / DALL·E / DeepAI Text-to-Image API  
-- **Libraries:** Librosa, NumPy, Matplotlib, TensorFlow  
-- **Version Control:** Git & GitHub  
+### Frontend
+- HTML5 / CSS3  
+- Custom styled UI with progress bar and animated hourglass  
+- JavaScript EventSource (SSE) for real-time progress updates  
 
+### Backend (Flask)
+- Python 3.10+  
+- Multithreaded pipeline processing (sound → text → image)  
+- SSE progress updates  
+- Automatic model lazy-loading for speed  
+- Temporary file management and cleanup  
+
+### Models Used
+#### 🔊 Sound Classification
+- **YAMNet** (TensorFlow Hub)  
+- **AST — Audio Spectrogram Transformer** (MIT / HuggingFace)  
+Used together for robust animal vocalization recognition.
+
+#### 📝 Description Generation
+- **TinyLlama 1.1B Chat**  
+  - Fully local  
+  - Small enough to run on CPU  
+  - Generates clean, coherent 3–5 sentence descriptions based on Wikipedia information  
+
+#### 🖼️ Image Generation
+- **Stable Diffusion XL Turbo** (stabilityai/sdxl-turbo)  
+  - Fast diffusion variant  
+  - Photorealistic images  
+  - Runs locally through HuggingFace diffusers 
 
 ---
 
